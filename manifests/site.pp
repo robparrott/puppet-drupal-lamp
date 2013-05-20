@@ -4,6 +4,7 @@ Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] }
 
 #include git
 include drush
+include 
 
 ######################################
 ## WEBSERVER
@@ -34,6 +35,30 @@ apache::vhost { $ipaddress:
   options         => 'FollowSymLinks',
   override        => ['all']
 }
+
+###################################### 
+## Memcache
+###################################### 
+
+class { 'memcached': }
+
+###################################### 
+## Varnish
+###################################### 
+class { "varnish_rhel":
+    varnish_data_directory => "/var/lib/varnish",
+    varnish_storage_size   => "5G",
+    varnish_listen_port    => 80
+}
+
+#varnish_rhel::vcl { '/etc/varnish/default.vcl':
+#  vcl_content => template('files/etc/varnish/default.vcl.erb')
+#}
+
+#varnish_rhel::vcl { '/etc/varnish/backend.vcl':
+#  vcl_content => template('files/etc/varnish/backend.vcl.erb')
+#}
+
 
 ######################################
 ## DB

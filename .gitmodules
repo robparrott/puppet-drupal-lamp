@@ -23,3 +23,9 @@
 [submodule "modules/drush"]
 	path = modules/drush
 	url = https://github.com/a-c-m/puppet-drush-simple.git
+[submodule "modules/memcached"]
+	path = modules/memcached
+	url = git://github.com/saz/puppet-memcached.git
+[submodule "modules/varnish_rhel"]
+	path = modules/varnish_rhel
+	url = git://github.com/TomiTakussaari/varnish_rhel.git

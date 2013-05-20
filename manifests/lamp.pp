@@ -2,27 +2,27 @@
 
 Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] }
 
-include git
+#include git
 include drush
 
 ######################################
 ## WEBSERVER
 ######################################
 class {'apache': }
-class {'apache::mod::php': }
-a2mod { "Enable rewrite mod":
-  name    => "rewrite",
-  ensure  => "present"
-}
+#class {'apache::mod::php': }
+#a2mod { "Enable rewrite mod":
+#  name    => "rewrite",
+#  ensure  => "present"
+#}
 package {
-  'php5-gd':
+  'php-gd':
     ensure => 'present';
-  'php-apc':
+  'php-pecl-apc':
     ensure => 'present';
-  'php5-mysql':
+  'php-mysql':
     ensure => 'present';
-  'php5-curl':
-    ensure => 'present';
+#  'php5-curl':
+#    ensure => 'present';
 }
 
 ## Standard /var/www default site
